@@ -1,13 +1,14 @@
+
 // Avery Wilkins 
 // falling shapes with depth + color
 // using arrays to change the chapes and colors based on depth
-
 
 let yPositions = [];
 let xPositions = [];
 let speeds = [];
 let depths = [];
 let umbrella; 
+let scene='Start';
 
 let numshapes = 150;
 
@@ -33,6 +34,26 @@ function setup() {
 }
 
 function draw() {
+
+  // START SCREEN
+  if (scene === 'Start') {
+    background(20, 20, 40);
+
+    fill(255);
+    textAlign(CENTER, CENTER);
+
+    textSize(36);
+    text("Computational Hydrology", width / 2, height / 2 - 60);
+
+    textSize(18);
+    text("Press ENTER to start", width / 2, height / 2);
+
+    textSize(14);
+    text("Press 1: Circles\nPress 2: Squares\nOther keys: Triangles", width / 2, height / 2 + 60);
+
+    return;
+  }
+
   background(0);
   image(umbrella, width / 2, height - 100, 200, 200);
   
@@ -77,5 +98,12 @@ function draw() {
       depths[i] = d;
       speeds[i] = map(d, 0.2, 1, 1, 15);
     }
+  }
+}
+
+// start the animation when ENTER is pressed
+function keyPressed() {
+  if (scene === 'Start' && keyCode === ENTER) {
+    scene = 'Play';
   }
 }
